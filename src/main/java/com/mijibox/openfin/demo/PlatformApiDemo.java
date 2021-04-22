@@ -614,7 +614,12 @@ public class PlatformApiDemo {
 				PlatformApiDemo.this.frame.setVisible(false);
 				int cnt = rootNode.getChildCount();
 				if (cnt == 0) {
-					fin.disconnect();
+					if (fin != null && fin.isConnected()) {
+						fin.disconnect();
+					}
+					else {
+						System.exit(0);
+					}
 				}
 				else {
 					ArrayList<CompletableFuture<?>> quitFutures = new ArrayList<>();
